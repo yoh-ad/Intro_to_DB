@@ -54,20 +54,18 @@ CREATE TABLE customers (
     address TEXT
 );
 
--- Orders table
-CREATE TABLE orders (
-    order_id INT PRIMARY KEY,
-    customer_id INT,
-    order_date DATE,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+CREATE TABLE ORDERS (
+    ORDER_ID INT NOT NULL PRIMARY KEY,
+    CUSTOMER_ID INT,
+    ORDER_DATE DATE,
+    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
 );
 
--- Order_Details table
-CREATE TABLE order_details (
-    orderdetailid INT PRIMARY KEY,
-    order_id INT,
-    book_id INT,
-    quantity DOUBLE,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id)
+CREATE TABLE ORDER_DETAILS (
+    ORDERDETAILID INT NOT NULL PRIMARY KEY,
+    ORDER_ID INT,
+    BOOK_ID INT,
+    QUANTITY DOUBLE,
+    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
+    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
 );
