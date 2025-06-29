@@ -1,4 +1,4 @@
--- Create the database
+-- Create the database if it doesn't exist
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
