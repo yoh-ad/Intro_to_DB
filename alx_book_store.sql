@@ -1,16 +1,16 @@
--- Create database
+-- Create the database
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
--- Create authors table
+-- Authors table
 CREATE TABLE authors (
-    author_id INT PRIMARY KEY AUTO_INCREMENT,
+    author_id INT PRIMARY KEY,
     author_name VARCHAR(215)
 );
 
--- Create books table
+-- Books table
 CREATE TABLE books (
-    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    book_id INT PRIMARY KEY,
     title VARCHAR(130),
     author_id INT,
     price DOUBLE,
@@ -18,25 +18,25 @@ CREATE TABLE books (
     FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
 
--- Create customers table
+-- Customers table
 CREATE TABLE customers (
-    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT PRIMARY KEY,
     customer_name VARCHAR(215),
     email VARCHAR(215),
     address TEXT
 );
 
--- Create orders table
+-- Orders table
 CREATE TABLE orders (
-    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT PRIMARY KEY,
     customer_id INT,
     order_date DATE,
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
--- Create order_details table
+-- Order_Details table
 CREATE TABLE order_details (
-    orderdetailid INT PRIMARY KEY AUTO_INCREMENT,
+    orderdetailid INT PRIMARY KEY,
     order_id INT,
     book_id INT,
     quantity DOUBLE,
