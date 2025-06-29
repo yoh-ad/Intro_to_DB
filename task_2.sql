@@ -1,38 +1,44 @@
+-- Use the alx_book_store database
 USE alx_book_store;
 
-CREATE TABLE AUTHORS (
-    AUTHOR_ID INT NOT NULL PRIMARY KEY,
-    AUTHOR_NAME VARCHAR(215)
+-- Create Authors table
+CREATE TABLE IF NOT EXISTS Authors (
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
+    author_name VARCHAR(215) NOT NULL
 );
 
-CREATE TABLE BOOKS (
-    BOOK_ID INT NOT NULL PRIMARY KEY,
-    TITLE VARCHAR(130),
-    AUTHOR_ID INT,
-    PRICE DOUBLE,
-    PUBLICATION_DATE DATE,
-    FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
+-- Create Books table with foreign key to Authors
+CREATE TABLE IF NOT EXISTS Books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(130) NOT NULL,
+    author_id INT NOT NULL,
+    price DOUBLE NOT NULL,
+    publication_date DATE,
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
-CREATE TABLE CUSTOMERS (
-    CUSTOMER_ID INT NOT NULL PRIMARY KEY,
-    CUSTOMER_NAME VARCHAR(215),
-    EMAIL VARCHAR(215),
-    ADDRESS TEXT
+-- Create Customers table
+CREATE TABLE IF NOT EXISTS Customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(215) NOT NULL,
+    email VARCHAR(215) NOT NULL,
+    address TEXT NOT NULL
 );
 
-CREATE TABLE ORDERS (
-    ORDER_ID INT NOT NULL PRIMARY KEY,
-    CUSTOMER_ID INT,
-    ORDER_DATE DATE,
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
+-- Create Orders table with foreign key to Customers
+CREATE TABLE IF NOT EXISTS Orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    order_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
-CREATE TABLE ORDER_DETAILS (
-    ORDERDETAILID INT NOT NULL PRIMARY KEY,
-    ORDER_ID INT,
-    BOOK_ID INT,
-    QUANTITY DOUBLE,
-    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
-    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
+-- Create Order_Details table with foreign keys to Orders and Books
+CREATE TABLE IF NOT EXISTS Order_Details (
+    orderdetailid INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    book_id INT NOT NULL,
+    quantity DOUBLE NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
