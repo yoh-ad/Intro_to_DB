@@ -3,15 +3,15 @@ from mysql.connector import Error
 
 def create_database():
     try:
-        # Connect to MySQL server (no database specified)
+        # Connect to MySQL server without specifying a database
         connection = mysql.connector.connect(
-            host='localhost',  # Change if your MySQL host is different
-            user='root',       # Change to your MySQL username
-            password=''        # Change to your MySQL password
+            host='localhost',      # update if needed
+            user='root',           # update if needed
+            password=''            # update if needed
         )
         if connection.is_connected():
             cursor = connection.cursor()
-            # Create database if it doesn't exist (no SELECT or SHOW)
+            # Create the database if it does not exist, no SELECT or SHOW used
             cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
             print("Database 'alx_book_store' created successfully!")
             cursor.close()
